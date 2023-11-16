@@ -5,6 +5,7 @@ using PocBlazorAppNet8.Client.Pages;
 using PocBlazorAppNet8.Components;
 using PocBlazorAppNet8.Components.Account;
 using PocBlazorAppNet8.Data;
+using PocBlazorAppNet8.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -35,6 +36,8 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
     .AddSignInManager()
     .AddDefaultTokenProviders();
 
+builder.Services.AddScoped<IGetUserService, GetUserService>();
+builder.Services.AddScoped<ICreateUserService, CreateUserService>();
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 
 var app = builder.Build();

@@ -1,0 +1,72 @@
+﻿@page "/createuser"
+@inject ICreateUserService CreateUserService
+@inject NavigationManager NavigationManager
+
+<h3>Create User</h3>
+
+<EditForm Model="@newUser" OnValidSubmit="SubmitUserForm" FormName="createUserForm">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <InputText id="firstName" @bind-Value="newUser.FirstName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <InputText id="lastName" @bind-Value="newUser.LastName" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="jobTitle">Job Title:</label>
+        <InputText id="jobTitle" @bind-Value="newUser.JobTitle" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="age">Age:</label>
+        <InputNumber id="age" @bind-Value="newUser.Age" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="address">Address:</label>
+        <InputText id="address" @bind-Value="newUser.Address" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="zipCode">Zip Code:</label>
+        <InputText id="zipCode" @bind-Value="newUser.ZipCode" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="imageFile">Profile Image:</label>
+        <InputFile id="imageFile" OnChange="HandleFileChange" class="form-control" />
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create User</button>
+</EditForm>
+
+@code {
+    private UserPrimaryInfo newUser = new UserPrimaryInfo();
+
+    private async Task SubmitUserForm()
+    {
+        // Call the service to create a new user in the database
+        await CreateUserService.CreateUserAsync(newUser);
+
+        // Redirect to the user list page after creating the user
+        NavigationManager.NavigateTo("/users");
+    }
+
+    private void HandleFileChange(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+
+        if (file != null)
+        {
+            // Convert IBrowserFile to IFormFile
+            newUser.ImageFile = new FormFile(file.OpenReadStream(file.Size), 0, file.Size, file.Name, file.Name);
+        }
+    }
+}
