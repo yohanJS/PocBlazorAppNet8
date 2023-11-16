@@ -1,0 +1,57 @@
+﻿@page "/users"
+@inject IGetUserService GetUserService
+@attribute [StreamRendering]
+
+
+<h3>Current Users</h3>
+
+@if (userPrimaryInfo == null)
+{
+    <p>Finding users....</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Job Title</th>
+                <th>Age</th>
+                <th>Address</th>
+                <th>Zip Code</th>
+                <!-- Add other columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in userPrimaryInfo)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.JobTitle</td>
+                    <td>@item.Age</td>
+                    <td>@item.Address</td>
+                    <td>@item.ZipCode</td>
+                    <!-- Add other columns as needed -->
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
+
+@code {
+
+    List<UserPrimaryInfo>? userPrimaryInfo = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(500);
+        userPrimaryInfo = await GetUserService.GetPrimaryInfoAsync();
+    }
+
+
+}
