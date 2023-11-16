@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocBlazorAppNet8", "PocBlazorAppNet8\PocBlazorAppNet8.csproj", "{93BE1D45-BA40-41AC-9FC1-81CF9265CC8F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocBlazorAppNet8", "PocBlazorAppNet8\PocBlazorAppNet8.csproj", "{93BE1D45-BA40-41AC-9FC1-81CF9265CC8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PocBlazorAppNet8.Client", "PocBlazorAppNet8.Client\PocBlazorAppNet8.Client.csproj", "{5692D149-C8D9-4F5E-A66C-F24AB273EFC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PocBlazorAppNet8.Client", "PocBlazorAppNet8.Client\PocBlazorAppNet8.Client.csproj", "{5692D149-C8D9-4F5E-A66C-F24AB273EFC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
